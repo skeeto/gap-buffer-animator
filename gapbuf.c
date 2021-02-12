@@ -161,7 +161,7 @@ gapbuf_backward(struct gapbuf *b)
 void
 gapbuf_forward(struct gapbuf *b)
 {
-    size_t back = b->total - b->front + b->gap;
+    size_t back = b->total - b->front - b->gap;
     if (back > 0) {
         b->buf[b->front] = b->buf[b->front + b->gap];
         b->front++;
