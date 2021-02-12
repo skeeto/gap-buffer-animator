@@ -84,7 +84,7 @@ struct gapbuf {
 void
 gapbuf_init(struct gapbuf *b, size_t init)
 {
-    b->total = b->gap = init;
+    b->total = b->gap = init + !init;
     b->front = 0;
     b->buf = malloc(init);
 }
