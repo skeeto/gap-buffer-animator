@@ -115,14 +115,16 @@ void
 gapbuf_inserts(struct gapbuf *b, const char *s)
 {
     size_t len = strlen(s);
+    size_t back = b->total - b->front - b->gap;
     while (b->gap < len) {
         b->gap = 0;
         gapbuf_insert(b, 0);
         b->front--;
+        b->gap++;
     }
     memcpy(b->buf + b->front, s, len);
     b->front += len;
-    b->gap -= len;
+    b->gap = b->total - b->front - back;
 }
 
 void
